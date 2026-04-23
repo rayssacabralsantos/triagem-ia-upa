@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sistema de Triagem Inteligente - UPA (SUS)
 
 Projeto desenvolvido para a disciplina de Inteligência Artificial.
