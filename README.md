@@ -5,7 +5,9 @@ Projeto desenvolvido para a disciplina de Inteligência Artificial.
 
 # Integrantes
 Integrante 1: Rayssa Cabral Santos              |  RA: F3581G3
+
 Integrante 2: Carlos Eduardo M. M. M. Benigin   |  RA: G030BI5
+
 Integrante 3: Isabella Bonjani Gonçalves         |  RA: R091HF0
 
 
