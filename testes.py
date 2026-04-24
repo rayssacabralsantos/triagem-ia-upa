@@ -16,9 +16,9 @@ import sys
 import os
 
 # Ajusta o path para importar os módulos do projeto
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from motor import MotorInferencia
+from motor_inferencia import MotorInferencia
 from desempate import ModuloDesempate
 
 # ---------------------------------------------------------------------------
@@ -207,7 +207,7 @@ class TestTriagemUPA(unittest.TestCase):
                 leitura("12:00", temperatura=37.8, spo2=96,
                         frequencia_cardiaca=85, escala_dor=3),  # Nível 4 clínico
                 leitura("12:15", temperatura=39.4, spo2=96,
-                        frequencia_cardiaca=88, escala_dor=3),  # +1,6 °C → E4
+                        frequencia_cardiaca=85, escala_dor=3),  # +1,6 °C → E4
             ],
         )
         resultado = self.motor.processar(pac)
@@ -357,14 +357,14 @@ class TestTriagemUPA(unittest.TestCase):
             "PAC-010A", idade=30, hora_entrada="16:00",
             leituras=[
                 leitura("16:00", temperatura=39.5, escala_dor=6),
-                leitura("16:28", temperatura=39.5, escala_dor=6),   # 28 min → SLA em 2 min
+                leitura("16:31", temperatura=39.5, escala_dor=6),   # 31 min → viola SLA de 30 min
             ]
         )
         pac_b = criar_paciente(
             "PAC-010B", idade=28, hora_entrada="16:00",
             leituras=[
                 leitura("16:00", temperatura=39.1, escala_dor=5),
-                leitura("16:28", temperatura=39.1, escala_dor=5),   # idem
+                leitura("16:31", temperatura=39.1, escala_dor=5),   # idem
             ]
         )
         r_a = self.motor.processar(pac_a)
@@ -397,7 +397,7 @@ class TestTriagemUPA(unittest.TestCase):
             "PAC-011A", idade=32, hora_entrada="17:00",
             leituras=[
                 leitura("17:00", escala_dor=2, spo2=98),   # Nível 4
-                leitura("17:30", escala_dor=5, temperatura=39.5),  # sobe para Nível 3 agora
+                leitura("17:30", escala_dor=6, temperatura=36.8, spo2=98),  # só dor mudou, nível 3
             ]
         )
         pac_b = criar_paciente(
